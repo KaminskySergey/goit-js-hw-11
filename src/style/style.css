@@ -10,7 +10,9 @@
     background-color: #fafafa;
     color: #212121;
     line-height: 1.5;
-    background-color: #c3c31a;
+    
+    
+    background: linear-gradient(to right, #3b3b1b -20%, #ade007 80%);
   }
 p{
   margin: 0;
@@ -54,7 +56,7 @@ b{
   top: 0;
   left: 0;
   width: 100%;
-  background-color: blue;
+  background: linear-gradient(45deg,#000cf9,#040864);
   
 }
 form{
