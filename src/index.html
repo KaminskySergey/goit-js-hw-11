@@ -3,12 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css">
     <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <header class="header-cont">
+      <div class="container">
+        <form class="search-form" id="search-form">
+          <input
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search images..."
+          />
+          <button type="submit">
+            <svg wigth="30">
+              <use href="./icon/symbol-defs.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </header>
+    
+
+    <main>
+      <section class="section__gallery">
+        <div class="container">
+          <div class="gallery">
+            <!-- Карточки изображений -->
+          </div>
+          
+        <div class="btn__load-more">
+        <button type="button" class="load-more">Load mode</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./index.js" type="module"></script>
   </body>
 </html>
