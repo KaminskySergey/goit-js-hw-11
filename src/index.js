@@ -37,6 +37,7 @@ function onInput(){ // disablet кнопки поиска
 function onClickBtn(){
   fetch()
   
+  
 }
 
 
@@ -45,13 +46,15 @@ function fetch(){
     console.log(image.totalHits);
     totalHits = image.totalHits
     
-    if(page === 1 && input.value !== 0){
-      Notify.success(`Hooray! We found ${totalHits} images.`)
-      
-    }
+    
+    
     if (image.total === 0) { // если пришло 0 картинок, то это
       Notify.failure("Sorry, there are no images matching your search query. Please try again.")
       return;
+    }
+    if(page === 1 && input.value !== 0){
+      Notify.success(`Hooray! We found ${totalHits} images.`)
+      
     }
     
     if(image.hits.length < 40){ // если картинки закончились, то появляется кнопка
@@ -59,7 +62,6 @@ function fetch(){
       Notify.warning("We're sorry, but you've reached the end of search results.")
       return
     }
-    
     
     
     btnBlock()
@@ -71,7 +73,7 @@ function fetch(){
         lightbox.refresh();
     })
     btnBlock()
-    
+    scroll(totalHits)// вызываем плавный скролл
 })
 .catch(error =>{
   console.log(error)
@@ -82,25 +84,22 @@ function fetch(){
 
 function onFormSubmit(evt){
   inputValue = input.value.trim()
-  
-  
   if(inputValue === ''){
   return;
   } 
   evt.preventDefault() 
   pageOne()
   fetch()
-  
   clearTextContent()
   
   }
-  
-  
+
+
 
 
 
 function renderCard(markup){ // функци рендера
-    gallery.insertAdjacentHTML('beforeend', markup)
+  gallery.insertAdjacentHTML('beforeend', markup)
 }
 
 
@@ -120,6 +119,20 @@ function pageOne(){
 function clearTextContent(){
   gallery.innerHTML = ' ';
   
+}
+
+function scroll(totalHits){ // функция скролла
+  if(page !== 0){
+    const { height: cardHeight } = document
+.querySelector(".gallery")
+.firstElementChild.getBoundingClientRect();
+
+window.scrollBy({
+top: cardHeight * 2,
+behavior: "smooth",
+});
+
+  }
 }
 
 function markupCard({webformatURL,largeImageURL,tags,likes,views,comments,downloads}){
